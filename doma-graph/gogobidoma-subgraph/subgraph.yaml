@@ -1,0 +1,40 @@
+specVersion: 1.0.0
+schema:
+  file: ./schema.graphql
+
+dataSources:
+  - kind: ethereum
+    name: DomaContract
+    network: doma-testnet
+    source:
+      address: "0xe8431e91C3911870E7b218A5336b211E53A03b4C"
+      abi: DomaContract
+      startBlock: 9604748
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AuctionStartedEntity
+        - BidPlacedEntity
+        - AuctionEndedEntity
+        - DomainSubmittedEntity
+        - WithdrawalEntity
+        - OwnershipTransferredEntity
+      abis:
+        - name: DomaContract
+          file: ./abis/DomaContract.json
+      eventHandlers:
+        - event: AuctionStarted(indexed uint256,uint256)
+          handler: handleAuctionStarted
+        - event: BidPlaced(indexed address,indexed uint256,uint256)
+          handler: handleBidPlaced
+        - event: AuctionEnded(indexed uint256,address,uint256)
+          handler: handleAuctionEnded
+        - event: DomainSubmitted(indexed address,indexed uint256)
+          handler: handleDomainSubmitted
+        - event: Withdrawal(indexed address,uint256)
+          handler: handleWithdrawal
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+      file: ./src/mapping.ts

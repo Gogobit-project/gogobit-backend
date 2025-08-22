@@ -1,0 +1,55 @@
+type AuctionStartedEntity @entity(immutable: true) {
+  id: ID!
+  tokenId: BigInt!
+  endTime: BigInt!
+  txHash: Bytes!
+  blockNumber: BigInt!
+  timestamp: BigInt!
+}
+
+type BidPlacedEntity @entity(immutable: true) {
+  id: ID!
+  bidder: Bytes!
+  tokenId: BigInt!
+  amount: BigInt!
+  txHash: Bytes!
+  blockNumber: BigInt!
+  timestamp: BigInt!
+}
+
+type AuctionEndedEntity @entity(immutable: true) {
+  id: ID!
+  tokenId: BigInt!
+  winner: Bytes!
+  price: BigInt!
+  txHash: Bytes!
+  blockNumber: BigInt!
+  timestamp: BigInt!
+}
+
+type DomainSubmittedEntity @entity(immutable: true) {
+  id: ID!
+  seller: Bytes!
+  tokenId: BigInt!
+  txHash: Bytes!
+  blockNumber: BigInt!
+  timestamp: BigInt!
+}
+
+type WithdrawalEntity @entity(immutable: true) {
+  id: ID!
+  user: Bytes!
+  amount: BigInt!
+  txHash: Bytes!
+  blockNumber: BigInt!
+  timestamp: BigInt!
+}
+
+type OwnershipTransferredEntity @entity(immutable: true) {
+  id: ID!
+  previousOwner: Bytes!
+  newOwner: Bytes!
+  txHash: Bytes!
+  blockNumber: BigInt!
+  timestamp: BigInt!
+}
